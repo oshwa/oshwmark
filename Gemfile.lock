@@ -5,6 +5,9 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     css_parser (1.6.0)
       addressable
+    haml (5.0.4)
+      temple (>= 0.8.0)
+      tilt
     mini_magick (4.9.2)
     mustermann (1.0.3)
     pdf-core (0.7.0)
@@ -24,6 +27,7 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.4)
       tilt (~> 2.0)
+    temple (0.8.0)
     tilt (2.0.8)
     ttfunk (1.5.1)
 
@@ -31,6 +35,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   mini_magick
   prawn
   prawn-svg
