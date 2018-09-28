@@ -28,7 +28,7 @@ def generate(uid, ext)
       }
     )
 
-    doc.svg IO.read("ext/OSHW_logo.svg"), at: [0, height-margin], width: width
+    doc.svg IO.read("ext/OSHW_mark.svg"), at: [0, height-margin], width: width
 
     doc.font font
     doc.text_box uid, width: width-margin*2, at: [margin*2, doc.cursor-margin], size: 50
@@ -69,7 +69,7 @@ def generate(uid, ext)
   body content
 end
 
-post '/logo' do
+post '/mark' do
 
   country     = params[:country][0..1].upcase
   uid         = "#{country}#{"%06d" % params[:number][0..5].to_i}"
@@ -81,11 +81,11 @@ post '/logo' do
   end
 end
 
-get '/logo' do
+get '/mark' do
   redirect to('/')
 end
 
-get '/logo/:country/:number.:format' do
+get '/mark/:country/:number.:format' do
 
   unless ["pdf", "png"].include? params[:format].downcase
     return "Unsupported file type"
@@ -122,7 +122,7 @@ __END__
 
     .content
       %p
-      %form{class:"pure-form pure-form-aligned", method:"post", action:"/logo"}
+      %form{class:"pure-form pure-form-aligned", method:"post", action:"/mark"}
         %fieldset
           .pure-control-group
             %label{for:"country"} Country Code
