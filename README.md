@@ -14,7 +14,7 @@ The service is available at [oshwmark.capablerobot.com](http://oshwmark.capabler
 
 After entering your certification's two digit country code and number, the service will generate PDF or PNG versions of the OSHW Mark.
 
-![Example Mark](ext/OSHW_Mark_US000000.png?raw=true)
+![Example Mark](ext/OSHW_mark_US000000.png?raw=true)
 
 The service does not use cookies and no tracking of usage is enabled.  The service is hosted on [Heroku](http://heroku.com) and here is their [privacy policy](https://www.salesforce.com/company/privacy/).
 
