@@ -10,7 +10,7 @@ Follow [Capable Robot on Twitter](http://twitter.com/capablerobot) for product a
 
 The service is available at [oshwmark.capablerobot.com](http://oshwmark.capablerobot.com)
 
-![Web Service Screenshot](ext/screenshot.png?raw=true)
+[![Web Service Screenshot](ext/screenshot.png?raw=true)](http://oshwmark.capablerobot.com)
 
 After entering your certification's two digit country code and number, the service will generate PDF or PNG versions of the OSHW Mark.
 
