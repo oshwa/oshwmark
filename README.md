@@ -1,1 +1,1 @@
-# oshwlogo
+# OSHW Logo Generator
