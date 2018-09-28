@@ -116,21 +116,23 @@ __END__
   .pure-u-1-5
   .pure-u-3-5
     .header
-      %h1 OSHW Mark Generator
+      %h1
+        %img{src:"https://www.oshwa.org/wp-content/uploads/2017/03/oshwa-logo-50.png"}
+        OSHW Mark Generator
 
     .content
       %p
       %form{class:"pure-form pure-form-aligned", method:"post", action:"/logo"}
         %fieldset
           .pure-control-group
-            %label{for:"country"}Country Code
+            %label{for:"country"} Country Code
             %input{name:"country", type:"text"}
-            %span{class:"pure-form-message-inline"}This is your 2 letter country code, like 'US'
+            %span{class:"pure-form-message-inline"} This is your 2 letter country code, like 'US'.
 
           .pure-control-group
-            %label{for:"number"}Number
+            %label{for:"number"} Number
             %input{name:"number", type:"text"}
-            %span{class:"pure-form-message-inline"}This is the number from your registration.
+            %span{class:"pure-form-message-inline"} This is the number from your certification.
 
           .pure-controls
             %button{type:"submit", class:"pure-button pure-button-primary", name:"PDF"}Generate PDF
@@ -140,13 +142,21 @@ __END__
       %p
         This web service was created by
         %a{href:"http://capablerobot.com"} Capable Robot Components
-        to make it easier to make OSHW marks.  If you have suggestions on how to make this tool more useful (or want to talk about robots and OSHW), email us at robot@capablerobot.com
+        to simplify the generation of OSHW marks, after certification is complete.
+
+        Certification process information is available on the
+        %a{href:"https://certification.oshwa.org"} OSHWA Website.
       %p
-        Follow us on
-        %a{href:"https://twitter.com/capablerobot"} Twitter
+        If you have suggestions on how to make this tool more useful (or want to talk about robots and OSHW), email us at robot@capablerobot.com
+      %p
+      %p
+        The source code for this service is MIT licensed and is
+        %a{href:"https://github.com/CapableRobot/oshwmark"} available on Github.
+      %p
+        Follow
+        %a{href:"https://twitter.com/capablerobot"} Capable Robot on Twitter
         for product announcements and updates.
       %p
-
       %p
         Thanks!
 
