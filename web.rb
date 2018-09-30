@@ -10,53 +10,73 @@ get '/' do
 end
 
 def generate(uid, ext)
-  output_file = "OSHW_mark_#{uid}.pdf"
 
-  width  = 300
-  height = 220
-  margin = 14
+
+  width  = 900
+  height = 660
+  margin = 42
   font   = "Deja Vu Sans Mono"
-
-  Prawn::Document.generate(
-    output_file, page_size: [width, height], margin: 0
-  ) do |doc|
-
-    doc.font_families.update(
-      font => {
-        normal: "ext/DejaVuSansMono.ttf",
-        bold:   "ext/DejaVuSansMono-Bold.ttf"
-      }
-    )
-
-    doc.svg IO.read("ext/OSHW_mark.svg"), at: [0, height-margin], width: width
-
-    doc.font font
-    doc.text_box uid, width: width-margin*2, at: [margin*2, doc.cursor-margin], size: 50
-  end
 
   case ext
   when "pdf"
     content_type :pdf
-    content_file = output_file
+    content_file = "OSHW_mark_#{uid}.pdf"
+
+    Prawn::Document.generate(
+      content_file, page_size: [width, height], margin: 0
+    ) do |doc|
+
+      doc.font_families.update(
+        font => {
+          normal: "ext/DejaVuSansMono.ttf",
+          bold:   "ext/DejaVuSansMono-Bold.ttf"
+        }
+      )
+
+      doc.svg IO.read("ext/OSHW_mark.svg"), at: [0, height-margin], width: width
+
+      box_args = {width: width-margin*4, at: [margin*2, doc.cursor-margin], size: 150, align: :center}
+      doc.font font
+      doc.formatted_text_box [{text: uid, color: '333333'}], box_args
+    end
 
   when "png"
     content_type :png
-    content_file = output_file.gsub(".pdf", ".png")
+    content_file = "OSHW_mark_#{uid}.png"
 
-    pdf = MiniMagick::Image.open(output_file)
-    image = pdf.pages[0]
-    image.resize "#{width}x#{height}"
+    ## Margin on SVG has to be adjusted a bit to match PDF output
+    svg_margin = 45
+    svg_width  = width-svg_margin*4
+    svg_height = svg_width / 1.92
 
-    image.combine_options do |c|
-      c.background '#FFFFFF'
-      c.alpha 'remove'
+    MiniMagick::Tool::Convert.new do |cmd|
+      cmd.background 'white'
+      cmd.density    200
+      cmd << "ext/OSHW_mark.svg"
+
+      ## ImageMagick doesn't find the correct size for the SVG so we
+      ## have to explicitly set it (ignoring the original aspect ratio)
+      cmd.resize  "#{svg_width}x#{svg_height}!"
+
+      ## Resize the image canvas to add the margin around the logo
+      cmd.compose 'copy'
+      cmd.gravity 'center'
+      cmd.extent  "#{width}x#{svg_height + 2*margin}"
+
+      ## Resize the image canvas to add space before the logo for text
+      cmd.gravity 'north'
+      cmd.extent  "#{width}x#{height}"
+
+      ## Add the UID text
+      cmd.font      "ext/DejaVuSansMono.ttf"
+      cmd.pointsize 55
+      cmd.fill      '#333'
+      cmd.gravity   'south'
+      cmd.draw      "text 0,#{margin*1.2} \'#{uid}\'"
+
+      cmd << content_file
     end
 
-    image.format "png"
-    image.write content_file
-
-    # Delete the PDF, we don't need it anymore
-    File.delete output_file
   end
 
   content = File.read content_file
@@ -143,9 +163,10 @@ __END__
         This web service was created by
         %a{href:"http://capablerobot.com"} Capable Robot Components
         to simplify the generation of OSHW marks, after certification is complete.
-
-        Certification process information is available on the
+      %p
+        Information about open souce hardware certification is available on the
         %a{href:"https://certification.oshwa.org"} OSHWA Website.
+        OSHWA Certification Logo used with permission.
       %p
         If you have suggestions on how to make this tool more useful (or want to talk about robots and OSHW), email us at robot@capablerobot.com
       %p
