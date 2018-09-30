@@ -18,6 +18,17 @@ After entering your certification's two digit country code and number, the servi
 
 The service does not use cookies and no tracking of usage is enabled.  The service is hosted on [Heroku](http://heroku.com) and here is their [privacy policy](https://www.salesforce.com/company/privacy/).
 
+## Heroku Notes
+
+PNG creation requires a newer version of ImageMagick than is installed on Heroku.  To upgrade from 6.9.7 to 7.0.8, run:
+
+```
+heroku buildpacks:add --index 1 https://github.com/fancybits/heroku-buildpack-imagemagick.git
+git push heroku master
+```
+
+The first deployment after this command will take a while as ImageMagick will be downloaded and installed.  Later deploys will use a cached copy.
+
 ## Attribution
 
 The OSHW Certification Logo (or Mark) is trademarked by the OSHWA.  There is more information about why and what that means on the [OSHWA website](https://www.oshwa.org/2018/07/09/oshwa-certification-logo-is-official/).
