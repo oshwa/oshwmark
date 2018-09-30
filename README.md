@@ -23,7 +23,7 @@ The service does not use cookies and no tracking of usage is enabled.  The servi
 PNG creation requires a newer version of ImageMagick than is installed on Heroku.  To upgrade from 6.9.7 to 7.0.5, run:
 
 ```
-heroku buildpacks:add --index 1 https://github.com/lucasrogeriomasotti/heroku-buildpack-imagemagick-7.0.5.git
+heroku buildpacks:add --index 1 https://github.com/osterwood/heroku-buildpack-imagemagick-7.0.8.git
 git push heroku master
 ```
 
