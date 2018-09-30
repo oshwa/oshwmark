@@ -27,7 +27,7 @@ heroku buildpacks:add --index 1 https://github.com/osterwood/heroku-buildpack-im
 git push heroku master
 ```
 
-The first deployment after this command will take a while as ImageMagick will be downloaded and installed.  Later deploys will use a cached copy.
+The first deployment after this command will take a while as ImageMagick will be downloaded and installed.  Later deploys will use a cached copy.  This ImageMagick buildpack builds without WMF, DJVU, GVC, autotrace, etc.
 
 ## Attribution
 
