@@ -20,10 +20,10 @@ The service does not use cookies and no tracking of usage is enabled.  The servi
 
 ## Heroku Notes
 
-PNG creation requires a newer version of ImageMagick than is installed on Heroku.  To upgrade from 6.9.7 to 7.0.8, run:
+PNG creation requires a newer version of ImageMagick than is installed on Heroku.  To upgrade from 6.9.7 to 7.0.5, run:
 
 ```
-heroku buildpacks:add --index 1 https://github.com/fancybits/heroku-buildpack-imagemagick.git
+heroku buildpacks:add --index 1 https://github.com/lucasrogeriomasotti/heroku-buildpack-imagemagick-7.0.5.git
 git push heroku master
 ```
 
