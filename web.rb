@@ -117,6 +117,9 @@ get '/mark/:country/:number.:format' do
   generate(uid, params[:format].downcase)
 end
 
+get '/ext/:image.png' do
+  send_file "./ext/#{params[:image]}.png"
+end
 
 
 __END__
@@ -137,7 +140,7 @@ __END__
   .pure-u-3-5
     .header
       %h1
-        %img{src:"https://www.oshwa.org/wp-content/uploads/2017/03/oshwa-logo-50.png"}
+        %img{src:"ext/oshwa-logo-50.png"}
         OSHW Mark Generator
 
     .content
